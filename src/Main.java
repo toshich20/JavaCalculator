@@ -21,7 +21,7 @@ public class Main {
             String input = scanner.next();
             if (input.length() == 1) {
                 char operation = input.charAt(0);
-                if (operation == '+' || operation == '-' || operation == '*' || operation == '/' ) {
+                if (operation == '+' || operation == '-' || operation == '*' || operation == '/') {
                     return operation;
                 }
             }
@@ -38,13 +38,14 @@ public class Main {
             case '*':
                 return firstOperand * secondOperand;
             case '/':
-                if (secondOperand == 0) {
-                    throw new ArithmeticException("Нельзя делить на ноль!");
-                }
                 return firstOperand / secondOperand;
             default:
                 return firstOperand;
         }
+    }
+
+    public static boolean isZeroDivision(char operation, double secondOperand) {
+        return operation == '/' && secondOperand == 0;
     }
 
 
@@ -53,11 +54,11 @@ public class Main {
         double firstOperand = getOperand(scanner);
         char operation = getOperation(scanner);
         double secondOperand = getOperand(scanner);
-        try {
-            double result = calculate(firstOperand, operation, secondOperand);
-            System.out.println(result);
-        } catch (ArithmeticException e) {
-            System.out.println(e.getMessage());
+        while (isZeroDivision(operation, secondOperand)) {
+            System.out.print("На ноль делить нельзя! Измените второй операнд: ");
+            secondOperand = getOperand(scanner);
         }
+        double result = calculate(firstOperand, operation, secondOperand);
+        System.out.println(result);
     }
 }
