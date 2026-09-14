@@ -29,11 +29,27 @@ public class Main {
         }
     }
 
+    private static double calculate(double firstOperand, char operation, double secondOperand) {
+        switch (operation) {
+            case '+':
+                return firstOperand + secondOperand;
+            case '-':
+                return firstOperand - secondOperand;
+            case '*':
+                return firstOperand * secondOperand;
+            case '/':
+                return firstOperand / secondOperand;
+            default:
+                return firstOperand;
+        }
+    }
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         double firstOperand = getOperand(scanner);
         char operation = getOperation(scanner);
         double secondOperand = getOperand(scanner);
+        double result = calculate(firstOperand, operation, secondOperand);
     }
 }
