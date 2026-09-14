@@ -38,6 +38,9 @@ public class Main {
             case '*':
                 return firstOperand * secondOperand;
             case '/':
+                if (secondOperand == 0) {
+                    throw new ArithmeticException("Нельзя делить на ноль!");
+                }
                 return firstOperand / secondOperand;
             default:
                 return firstOperand;
@@ -50,6 +53,11 @@ public class Main {
         double firstOperand = getOperand(scanner);
         char operation = getOperation(scanner);
         double secondOperand = getOperand(scanner);
-        double result = calculate(firstOperand, operation, secondOperand);
+        try {
+            double result = calculate(firstOperand, operation, secondOperand);
+            System.out.println(result);
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
