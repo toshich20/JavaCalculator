@@ -15,9 +15,25 @@ public class Main {
         }
     }
 
+    private static char getOperation(Scanner scanner) {
+        while (true) {
+            System.out.print("Введите операцию [+|-|*|/]: ");
+            String input = scanner.next();
+            if (input.length() == 1) {
+                char operation = input.charAt(0);
+                if (operation == '+' || operation == '-' || operation == '*' || operation == '/' ) {
+                    return operation;
+                }
+            }
+            System.out.println("Некорректная операция! Попробуйте снова.");
+        }
+    }
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         double firstOperand = getOperand(scanner);
+        char operation = getOperation(scanner);
+        double secondOperand = getOperand(scanner);
     }
 }
